@@ -182,17 +182,17 @@ body {
 
 /* Estado de las filas */
 .fila-verde {
-    background-color: rgba(16, 185, 129, 0.08) !important;
+    background-color: rgba(17, 207, 42, 0.719) !important;
     border-left-color: var(--success) !important;
 }
 
 .fila-amarillo {
-    background-color: rgba(245, 158, 11, 0.08) !important;
+    background-color: rgba(245, 159, 11, 0.705) !important;
     border-left-color: var(--warning) !important;
 }
 
 .fila-rojo {
-    background-color: rgba(239, 68, 68, 0.08) !important;
+    background-color: rgba(239, 68, 68, 0.918) !important;
     border-left-color: var(--danger) !important;
 }
 
