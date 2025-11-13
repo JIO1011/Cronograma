@@ -1,0 +1,22 @@
+# Dependencias
+node_modules/
+
+
+# Datos de producción
+data/
+
+# Logs del sistema
+*.log
+npm-debug.log*
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de IDE
+.vscode/
+.idea/
+
+# Archivos temporales
+*.tmp
+*.temp
