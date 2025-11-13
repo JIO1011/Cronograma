@@ -18,7 +18,7 @@ _Esta sección será completada cuando se implemente la aplicación._
 
 ## 📄 Licencia
 
-_Por definir_
+Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
 
 ## 📞 Contacto
 
