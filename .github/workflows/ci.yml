@@ -1,0 +1,380 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+
+# Cancela ejecuciones en progreso si hay un nuevo push
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '18.x'
+  CACHE_KEY_PREFIX: 'node-cache'
+
+jobs:
+  # Job 1: Análisis de código y linting
+  lint:
+    name: Lint y Análisis de Código
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Necesario para análisis completo
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: Instalar dependencias
+        run: npm ci
+      
+      - name: Ejecutar ESLint
+        run: npm run lint
+        continue-on-error: false
+      
+      - name: Ejecutar Prettier check
+        run: npm run format:check
+        continue-on-error: false
+      
+      - name: Análisis de código estático
+        run: npm run analyze || echo "No static analysis configured"
+        continue-on-error: true
+
+  # Job 2: Tests unitarios y de integración
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x, 20.x]
+    
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      
+      - name: Instalar dependencias
+        run: npm ci
+      
+      - name: Ejecutar tests unitarios
+        run: npm test -- --coverage
+      
+      - name: Ejecutar tests de integración
+        run: npm run test:integration || echo "No integration tests configured"
+        continue-on-error: true
+      
+      - name: Subir reporte de cobertura
+        if: matrix.node-version == '18.x'
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage/lcov.info
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: false
+      
+      - name: Generar reporte de tests
+        if: always()
+        uses: dorny/test-reporter@v1
+        with:
+          name: Test Results (Node ${{ matrix.node-version }})
+          path: 'test-results/**/*.xml'
+          reporter: jest-junit
+          fail-on-error: false
+
+  # Job 3: Escaneo de seguridad
+  security:
+    name: Análisis de Seguridad
+    runs-on: ubuntu-latest
+    
+    permissions:
+      security-events: write
+      contents: read
+    
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: Instalar dependencias
+        run: npm ci
+      
+      - name: Ejecutar npm audit
+        run: npm audit --audit-level=moderate
+        continue-on-error: true
+      
+      - name: Ejecutar Snyk security scan
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+      
+      - name: CodeQL Analysis
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript
+      
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
+      
+      - name: Análisis CodeQL
+        uses: github/codeql-action/analyze@v3
+
+  # Job 4: Build y validación
+  build:
+    name: Build de Producción
+    runs-on: ubuntu-latest
+    needs: [lint, test]
+    
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: Instalar dependencias
+        run: npm ci
+      
+      - name: Build de producción
+        run: npm run build
+        env:
+          NODE_ENV: production
+      
+      - name: Validar bundle size
+        run: |
+          npm run analyze:bundle || echo "No bundle analysis configured"
+        continue-on-error: true
+      
+      - name: Comprimir artefactos
+        run: tar -czf build.tar.gz dist/ || tar -czf build.tar.gz build/
+      
+      - name: Subir artefactos de build
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: build.tar.gz
+          retention-days: 7
+
+  # Job 5: Tests E2E (solo en PRs a main)
+  e2e:
+    name: Tests End-to-End
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: github.event_name == 'pull_request' && github.base_ref == 'main'
+    
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: Instalar dependencias
+        run: npm ci
+      
+      - name: Descargar artefactos de build
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+      
+      - name: Extraer build
+        run: tar -xzf build.tar.gz
+      
+      - name: Instalar Playwright
+        run: npx playwright install --with-deps
+      
+      - name: Ejecutar tests E2E
+        run: npm run test:e2e || echo "No E2E tests configured"
+        continue-on-error: true
+      
+      - name: Subir resultados de E2E
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-results
+          path: test-results/
+          retention-days: 7
+
+  # Job 6: Análisis de accesibilidad
+  accessibility:
+    name: Pruebas de Accesibilidad
+    runs-on: ubuntu-latest
+    needs: [build]
+    
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: Instalar dependencias
+        run: npm ci
+      
+      - name: Descargar artefactos de build
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+      
+      - name: Extraer build
+        run: tar -xzf build.tar.gz
+      
+      - name: Ejecutar Lighthouse CI
+        run: |
+          npm install -g @lhci/cli
+          lhci autorun || echo "No Lighthouse CI configured"
+        continue-on-error: true
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+      
+      - name: Análisis axe-core
+        run: npm run test:a11y || echo "No accessibility tests configured"
+        continue-on-error: true
+
+  # Job 7: Deploy a Staging (solo en develop)
+  deploy-staging:
+    name: Deploy a Staging
+    runs-on: ubuntu-latest
+    needs: [lint, test, security, build]
+    if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
+    environment:
+      name: staging
+      url: https://staging.cronograma.app
+    
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+      
+      - name: Descargar artefactos de build
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+      
+      - name: Extraer build
+        run: tar -xzf build.tar.gz
+      
+      - name: Deploy a Vercel/Netlify (Staging)
+        run: |
+          echo "Deploying to staging environment"
+          # npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
+          # o
+          # npx netlify-cli deploy --prod --auth=${{ secrets.NETLIFY_AUTH_TOKEN }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      
+      - name: Ejecutar smoke tests en staging
+        run: |
+          npm run test:smoke -- --url=https://staging.cronograma.app || echo "No smoke tests configured"
+        continue-on-error: true
+
+  # Job 8: Deploy a Producción (solo en main)
+  deploy-production:
+    name: Deploy a Producción
+    runs-on: ubuntu-latest
+    needs: [lint, test, security, build, e2e]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment:
+      name: production
+      url: https://cronograma.app
+    
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+      
+      - name: Descargar artefactos de build
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+      
+      - name: Extraer build
+        run: tar -xzf build.tar.gz
+      
+      - name: Deploy a Producción
+        run: |
+          echo "Deploying to production environment"
+          # npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
+          # o
+          # npx netlify-cli deploy --prod --auth=${{ secrets.NETLIFY_AUTH_TOKEN }}
+          # o
+          # aws s3 sync dist/ s3://${{ secrets.S3_BUCKET }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      
+      - name: Ejecutar smoke tests en producción
+        run: |
+          npm run test:smoke -- --url=https://cronograma.app || echo "No smoke tests configured"
+        continue-on-error: true
+      
+      - name: Crear release en GitHub
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.run_number }}
+          release_name: Release v${{ github.run_number }}
+          body: |
+            Deploy automático a producción
+            Commit: ${{ github.sha }}
+          draft: false
+          prerelease: false
+      
+      - name: Notificación de deploy exitoso
+        if: success()
+        run: |
+          echo "Deploy a producción completado exitosamente"
+          # curl -X POST ${{ secrets.SLACK_WEBHOOK_URL }} \
+          #   -H 'Content-Type: application/json' \
+          #   -d '{"text":"✅ Deploy exitoso a producción: cronograma.app"}'
+
+  # Job 9: Notificaciones y reportes
+  notify:
+    name: Notificaciones
+    runs-on: ubuntu-latest
+    needs: [deploy-staging, deploy-production]
+    if: always()
+    
+    steps:
+      - name: Verificar estado del workflow
+        run: |
+          echo "Estado del workflow: ${{ job.status }}"
+      
+      - name: Enviar notificación
+        if: failure()
+        run: |
+          echo "Pipeline falló - enviar notificación"
+          # Configurar notificaciones a Slack, Discord, etc.

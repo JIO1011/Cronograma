@@ -7,6 +7,7 @@ Aplicación web para gestionar y visualizar horarios de laboratorios en tiempo r
 - **[Buenas Prácticas](BEST_PRACTICES.md)**: Guía completa de las mejores prácticas de desarrollo para este proyecto
 - **[Guía de Contribución](CONTRIBUTING.md)**: Cómo contribuir al proyecto
 - **[Código de Conducta](CODE_OF_CONDUCT.md)**: Normas de comportamiento para la comunidad
+- **[Guía CI/CD](docs/CI_CD_GUIDE.md)**: Pipeline de integración continua y despliegue a producción
 
 ## 🚀 Inicio Rápido
 
