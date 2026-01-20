@@ -21,6 +21,8 @@ jobs:
   lint:
     name: Lint y Análisis de Código
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     
     steps:
       - name: Checkout código
@@ -53,6 +55,8 @@ jobs:
   test:
     name: Tests
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     
     strategy:
       matrix:
@@ -146,6 +150,8 @@ jobs:
     name: Build de Producción
     runs-on: ubuntu-latest
     needs: [lint, test]
+    permissions:
+      contents: read
     
     steps:
       - name: Checkout código
@@ -186,6 +192,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     if: github.event_name == 'pull_request' && github.base_ref == 'main'
+    permissions:
+      contents: read
     
     steps:
       - name: Checkout código
@@ -228,6 +236,8 @@ jobs:
     name: Pruebas de Accesibilidad
     runs-on: ubuntu-latest
     needs: [build]
+    permissions:
+      contents: read
     
     steps:
       - name: Checkout código
@@ -271,6 +281,8 @@ jobs:
     environment:
       name: staging
       url: https://staging.cronograma.app
+    permissions:
+      contents: read
     
     steps:
       - name: Checkout código
@@ -308,6 +320,11 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     environment:
       name: production
+      url: https://cronograma.app
+    permissions:
+      contents: write  # Necesario para crear releases
+    
+    steps:
       url: https://cronograma.app
     
     steps:
@@ -367,6 +384,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [lint, test, security, build]
     if: always() && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
+    permissions: {}
     
     steps:
       - name: Verificar estado del workflow
