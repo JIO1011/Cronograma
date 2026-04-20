@@ -67,11 +67,6 @@ export function AdminClient({ initialSchedule }: AdminClientProps) {
                       ? 'bg-[#5b4cfa] text-white shadow-md' 
                       : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                   }`}
-                  className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-                    selectedDay === day 
-                      ? 'bg-[#5b4cfa] text-white shadow-md' 
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                  }`}
                 >
                   {day}
                 </button>
