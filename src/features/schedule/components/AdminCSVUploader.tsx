@@ -67,24 +67,26 @@ export function AdminCSVUploader({ selectedDay }: AdminCSVUploaderProps) {
   };
 
   return (
-    <div>
-      <h2 className="text-sm font-bold text-gray-700 uppercase tracking-wider mb-3">
-        Ingresar Datos (CSV) - {selectedDay}
-      </h2>
-      <p className="text-xs text-gray-500 mb-4">
-        Formato: Materia, Profesor, Laboratorio, Hora, Encargado
-      </p>
+    <div className="flex flex-col h-full overflow-hidden">
+      <div className="shrink-0">
+        <h2 className="text-sm font-bold text-gray-700 uppercase tracking-wider mb-3">
+          Ingresar Datos (CSV) - {selectedDay}
+        </h2>
+        <p className="text-xs text-gray-500 mb-4">
+          Formato: Materia, Profesor, Laboratorio, Hora, Encargado
+        </p>
+      </div>
       <textarea
         value={csvText}
         onChange={(e) => setCsvText(e.target.value)}
-        className="w-full border border-gray-300 rounded-lg p-4 h-40 font-mono text-[13px] focus:ring-2 focus:ring-[#5b4cfa] focus:border-[#5b4cfa] outline-none resize-none shadow-sm disabled:opacity-50"
+        className="flex-1 min-h-[150px] w-full border border-gray-300 rounded-lg p-4 font-mono text-[13px] focus:ring-2 focus:ring-[#5b4cfa] focus:border-[#5b4cfa] outline-none resize-none shadow-sm disabled:opacity-50"
         placeholder="Anatomía 1,Biomedicina - Kerly Bolaños,ANATOMÍA,07:00,FERNANDO VELASCO..."
         disabled={isPending}
       />
-      {error && <p className="text-red-500 text-sm mt-2 font-medium">{error}</p>}
-      {success && <p className="text-[#10b981] text-sm mt-2 font-medium">{success}</p>}
+      {error && <p className="text-red-500 text-sm mt-2 font-medium shrink-0">{error}</p>}
+      {success && <p className="text-[#10b981] text-sm mt-2 font-medium shrink-0">{success}</p>}
       
-      <div className="mt-6 flex gap-3">
+      <div className="mt-6 flex gap-3 shrink-0">
         <button
           onClick={handleClearForm}
           className="flex-1 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors font-medium shadow-sm disabled:opacity-50"

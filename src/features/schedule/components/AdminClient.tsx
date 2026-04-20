@@ -40,11 +40,11 @@ export function AdminClient({ initialSchedule }: AdminClientProps) {
   const currentDaySchedule = schedule.filter(s => s.dia === selectedDay);
 
   return (
-    <div className="min-h-screen bg-[#f4f5f7] p-8 font-sans">
-      <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-        <div className="bg-[#232845] p-6 text-white flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Administración de Horarios</h1>
-          <div className="flex items-center gap-6">
+    <div className="h-screen w-screen bg-[#f4f5f7] p-4 sm:p-8 font-sans flex flex-col overflow-hidden box-border">
+      <div className="flex-1 w-full bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col min-h-0">
+        <div className="bg-[#232845] p-6 text-white flex justify-between items-center shrink-0">
+          <h1 className="text-2xl font-bold truncate pr-4">Administración de Horarios</h1>
+          <div className="flex items-center gap-6 shrink-0">
             <button onClick={() => router.push('/')} className="text-gray-300 hover:text-white flex items-center gap-2 transition-colors text-sm">
               <ArrowLeft size={16} /> Volver
             </button>
@@ -54,8 +54,8 @@ export function AdminClient({ initialSchedule }: AdminClientProps) {
           </div>
         </div>
 
-        <div className="p-8">
-          <div className="mb-8">
+        <div className="flex-1 p-6 sm:p-8 flex flex-col overflow-hidden min-h-0">
+          <div className="mb-6 shrink-0">
             <h2 className="text-sm font-bold text-gray-700 uppercase tracking-wider mb-4">Selecciona el Día</h2>
             <div className="flex flex-wrap gap-3">
               {DAYS.map(day => (
@@ -74,12 +74,12 @@ export function AdminClient({ initialSchedule }: AdminClientProps) {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 overflow-hidden">
             {/* Left: Input */}
-            <AdminCSVUploader selectedDay={selectedDay} />
+            <AdminCSVUploader key={`uploader-${selectedDay}`} selectedDay={selectedDay} />
 
             {/* Right: Preview */}
-            <AdminEditorTable currentDaySchedule={currentDaySchedule} selectedDay={selectedDay} />
+            <AdminEditorTable key={`table-${selectedDay}`} currentDaySchedule={currentDaySchedule} selectedDay={selectedDay} />
           </div>
         </div>
       </div>

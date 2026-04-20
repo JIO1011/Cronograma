@@ -91,7 +91,7 @@ export function AdminEditorTable({ currentDaySchedule, selectedDay }: AdminEdito
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-4 shrink-0">
         <h2 className="text-sm font-bold text-gray-700 uppercase tracking-wider">
           Horarios Actuales - {selectedDay}
         </h2>
@@ -106,13 +106,13 @@ export function AdminEditorTable({ currentDaySchedule, selectedDay }: AdminEdito
 
       {error && <p className="text-red-500 text-sm mb-2 font-medium">{error}</p>}
       
-      <div className="border border-gray-200 rounded-lg overflow-hidden flex-1 min-h-[300px] bg-gray-50 shadow-sm relative">
+      <div className="border border-gray-200 rounded-lg overflow-hidden flex-1 min-h-0 bg-gray-50 shadow-sm relative">
         {currentDaySchedule.length === 0 ? (
           <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-sm">
             No hay datos guardados para {selectedDay}
           </div>
         ) : (
-          <div className={`overflow-y-auto h-full max-h-[400px] ${isPending ? 'opacity-50 pointer-events-none' : ''}`}>
+          <div className={`overflow-y-auto h-full ${isPending ? 'opacity-50 pointer-events-none' : ''}`}>
             <table className="w-full text-sm text-left relative">
               <thead className="bg-gray-100 text-gray-600 sticky top-0 shadow-sm z-10 w-full">
                 <tr>
