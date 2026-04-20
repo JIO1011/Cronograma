@@ -1,0 +1,155 @@
+[
+  {
+    "materia": "Anatomía 1",
+    "profesor": "Biomedicina - Kerly Bolaños",
+    "laboratorio": "ANATOMÍA",
+    "hora": "20:00",
+    "encargado": "FERNANDO VELASCO",
+    "id": "Miercoles-1776300409713-0",
+    "dia": "Miercoles"
+  },
+  {
+    "materia": "Microbiología 1",
+    "profesor": "Odontología - Willy Bustillos",
+    "laboratorio": "MICROBIOLOGÍA",
+    "hora": "20:00",
+    "encargado": "TANIA ZURITA",
+    "id": "Miercoles-1776300409713-1",
+    "dia": "Miercoles"
+  },
+  {
+    "materia": "Sistemas Electrónicos",
+    "profesor": "Biomedicina - Santiago Nuñez",
+    "laboratorio": "BIOINSTRUMENTACIÓN",
+    "hora": "20:00",
+    "encargado": "FERNANDO VELASCO",
+    "id": "Miercoles-1776300409713-2",
+    "dia": "Miercoles"
+  },
+  {
+    "materia": "Innumonología 4",
+    "profesor": "Odontología - Patricia Gutierrez",
+    "laboratorio": "FITOQUÍMICA Y BIOENSAYOS",
+    "hora": "09:00",
+    "encargado": "GABRIELA CISNEROS",
+    "id": "Miercoles-1776300409713-3",
+    "dia": "Miercoles"
+  },
+  {
+    "materia": "Fisiología",
+    "profesor": "Biomedicina - Kerly Bolaños",
+    "laboratorio": "ANATOMÍA",
+    "hora": "09:00",
+    "encargado": "FERNANDO VELASCO",
+    "id": "Miercoles-1776300409713-4",
+    "dia": "Miercoles"
+  },
+  {
+    "materia": "Microbiología 2",
+    "profesor": "Odontología - Willy Bustillos",
+    "laboratorio": "MICROBIOLOGÍA",
+    "hora": "10:00",
+    "encargado": "TANIA ZURITA",
+    "id": "Miercoles-1776300409713-5",
+    "dia": "Miercoles"
+  },
+  {
+    "materia": "Integración Curricular",
+    "profesor": "Biomedicina - Santiago Nuñez",
+    "laboratorio": "BIOINSTRUMENTACIÓN",
+    "hora": "14:00",
+    "encargado": "EMILIO INLAGO",
+    "id": "Miercoles-1776300409713-6",
+    "dia": "Miercoles"
+  },
+  {
+    "materia": "Microbiología 1",
+    "profesor": "Odontología - Marco Ibarra",
+    "laboratorio": "CIENCIAS GENERALES II",
+    "hora": "14:00",
+    "encargado": "JONATHAN CHAUCA",
+    "id": "Miercoles-1776300409713-7",
+    "dia": "Miercoles"
+  },
+  {
+    "materia": "Anatomía 1",
+    "profesor": "Biomedicina - Kerly Bolaños",
+    "laboratorio": "ANATOMÍA",
+    "hora": "11:00",
+    "encargado": "EMILIO INLAGO",
+    "id": "Lunes-1776698831688-0",
+    "dia": "Lunes"
+  },
+  {
+    "materia": "Sistemas Electrónicos",
+    "profesor": "Biomedicina - Santiago Nuñez",
+    "laboratorio": "BIOINSTRUMENTACIÓN",
+    "hora": "11:00",
+    "encargado": "EMILIO INLAGO",
+    "id": "Lunes-1776698831688-1",
+    "dia": "Lunes"
+  },
+  {
+    "materia": "Innumonología 4",
+    "profesor": "Odontología - Patricia Gutierrez",
+    "laboratorio": "HISTOLOGÍA",
+    "hora": "11:00",
+    "encargado": "GABRIELA CISNEROS",
+    "id": "Lunes-1776698831688-3",
+    "dia": "Lunes"
+  },
+  {
+    "materia": "Bioquímica General 1",
+    "profesor": "Odontología - Sebastián Piedra",
+    "laboratorio": "QUÍMICA",
+    "hora": "10:00",
+    "encargado": "CAMILA NARANJO",
+    "id": "Lunes-1776698831688-4",
+    "dia": "Lunes"
+  },
+  {
+    "materia": "Ciencias Naturales",
+    "profesor": "Educación Básica - Ana María Narváez",
+    "laboratorio": "BIOTECNOLOGÍA VEGETAL",
+    "hora": "11:00",
+    "encargado": "NATALIA SARAVIA",
+    "id": "Lunes-1776698831688-5",
+    "dia": "Lunes"
+  },
+  {
+    "materia": "Química Industrial",
+    "profesor": "Industrial - Ximena Borja",
+    "laboratorio": "CIENCIAS GENERALES I",
+    "hora": "11:00",
+    "encargado": "TANIA ZURITA",
+    "id": "Lunes-1776698831688-6",
+    "dia": "Lunes"
+  },
+  {
+    "materia": "Integración Curricular",
+    "profesor": "Biomedicina - Santiago Nuñez",
+    "laboratorio": "BIOINSTRUMENTACIÓN",
+    "hora": "14:00",
+    "encargado": "FERNANDO VELASCO",
+    "id": "Lunes-1776698831688-7",
+    "dia": "Lunes"
+  },
+  {
+    "materia": "Microbiología 1",
+    "profesor": "Odontología - Marco Ibarra",
+    "laboratorio": "CIENCIAS GENERALES II",
+    "hora": "14:00",
+    "encargado": "CAMILA NARANJO",
+    "id": "Lunes-1776698831688-8",
+    "dia": "Lunes"
+  },
+  {
+    "materia": "Dispositivos Biomédicos I",
+    "profesor": "Biomedicina - Santiago Obando",
+    "laboratorio": "DISPOSTIVOS BIOMÉDICOS",
+    "hora": "17:00",
+    "encargado": "FERNANDO VELASCO",
+    "id": "Lunes-1776698831688-9",
+    "dia": "Lunes"
+  }
+]

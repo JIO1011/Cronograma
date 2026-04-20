@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none" class="calendar-icon">
+  <rect x="64" y="96" width="384" height="352" rx="40" ry="40" fill="#ffffff" stroke="#003b7a" stroke-width="32" />
+  <path d="M64 224h384" stroke="#003b7a" stroke-width="32" stroke-linecap="round" />
+  <path d="M160 48v80m192-80v80" stroke="#5b4cfa" stroke-width="32" stroke-linecap="round" />
+  <rect x="128" y="288" width="48" height="48" rx="8" fill="#5b4cfa" />
+  <rect x="232" y="288" width="48" height="48" rx="8" fill="#5b4cfa" opacity="0.5" />
+  <rect x="336" y="288" width="48" height="48" rx="8" fill="#10b981" />
+  <rect x="128" y="368" width="48" height="48" rx="8" fill="#5b4cfa" opacity="0.2" />
+  <rect x="232" y="368" width="48" height="48" rx="8" fill="#ef4444" />
+</svg>

@@ -1,65 +1,175 @@
-# Sistema de Horarios UPS - Prácticas de Laboratorio
+# 🎓 Sistema de Horarios de Laboratorio - UPS (Next.js V2)
 
-**Sistema web de "Digital Signage" desarrollado con Next.js y Tailwind CSS para mostrar en tiempo real los horarios de laboratorios de la Universidad Politécnica Salesiana. Cuenta con una vista pública de pantalla única que se actualiza automáticamente y filtra las clases por proximidad de horario (usando indicadores de color), junto con un panel de administración seguro que permite a los coordinadores cargar los horarios de manera masiva mediante formato CSV.**
+Aplicación web moderna para gestionar y visualizar horarios de laboratorios en tiempo real. Esta es la **Versión 2** desarrollada bajo la arquitectura de **Next.js (App Router)**.
 
-Un sistema web de pantalla única (Digital Signage) diseñado para mostrar en tiempo real los horarios de prácticas de laboratorio de la Universidad Politécnica Salesiana (UPS). El sistema está optimizado para ser visualizado en pantallas de pasillos o laboratorios sin necesidad de interacción manual (no-scroll).
+## 📋 Características
 
-## 🚀 Características Principales
+- ✅ **Vista pública** para estudiantes (solo lectura)
+- ✅ **Panel de administración** protegido con contraseña
+- ✅ **Actualización en tiempo real** con colores automáticos
+- ✅ **Sistema de colores inteligente:**
+  - 🟢 Verde: Clase próxima (7-10 min)
+  - 🟡 Amarillo: Iniciando ahora (0-7 min)
+  - 🔴 Rojo: Clase pasada
+  - ⚪ Blanco: Clase futura
+- ✅ **Filtrado automático**
+- ✅ **Responsive** (funciona en móviles, tablets y escritorio)
+- ⚡ **Stack Moderno:** Next.js 15, TypeScript, Tailwind CSS, Lucide React.
 
-El proyecto se divide en dos módulos principales:
+## 🚀 Instalación y Despliegue Local
 
-### 1. Vista Pública (Digital Signage)
-- **Pantalla Única:** Diseño responsivo que se ajusta al 100% del alto de la pantalla, eliminando la necesidad de hacer scroll.
-- **Reloj en Tiempo Real:** Muestra la hora exacta y la fecha actual en formato extendido.
-- **Filtro de Proximidad Inteligente:** No satura la pantalla con todo el horario del día. Solo muestra las clases relevantes que están por iniciar (hasta 20 minutos antes) o que acaban de empezar (hasta 120 minutos después).
-- **Indicadores de Estado por Color:**
-  - 🟢 **Verde:** Ingreso habilitado (clase próxima a iniciar).
-  - 🟡 **Amarillo:** Iniciando ahora (0-7 minutos desde la hora de inicio).
-  - 🔴 **Rojo:** En curso o finalizada (más de 7 minutos).
-- **Sincronización Automática:** La pantalla hace *polling* cada 30 segundos al servidor para reflejar los cambios realizados por coordinación sin necesidad de recargar la página manualmente.
+### Requisitos previos
+- Node.js 18 o superior
+- npm
 
-### 2. Panel de Administración
-- **Acceso Seguro:** Protegido mediante login con contraseña y cookies seguras.
-- **Carga Masiva (CSV):** Permite a los coordinadores actualizar los horarios de cualquier día (Lunes a Viernes) simplemente pegando texto en formato CSV (`MATERIA,PROFESOR,LABORATORIO,HORA,ENCARGADO`).
-- **Vista Previa:** Muestra una tabla con los horarios actualmente guardados en el sistema para facilitar la verificación.
+### Pasos de instalación
 
-## 🛠️ Stack Tecnológico
+1. **Navegar a la carpeta del proyecto**
+   ```bash
+   cd /ruta/a/tu/proyecto
+   ```
 
-- **Framework:** Next.js 15 (App Router)
-- **Lenguaje:** TypeScript
-- **Estilos:** Tailwind CSS v4
-- **Iconos:** Lucide React
-- **Procesamiento de Datos:** PapaParse (para la lectura de CSV)
-- **Manejo de Fechas:** date-fns
+2. **Instalar dependencias**
+   ```bash
+   npm install
+   ```
 
-## 📁 Estructura del Proyecto
+3. **Configurar contraseña de administrador**
+   La contraseña ya no se maneja por un archivo `.env` inicialmente. Por simplicidad, se encuentra alojada en el código fuente:
+   - Ve al archivo `app/api/login/route.ts`
+   - Cambia la constante `const ADMIN_PASSWORD = 'admin';` por la contraseña deseada.
 
-- `/app/page.tsx`: Vista pública principal (Digital Signage).
-- `/app/admin/page.tsx`: Panel de administración protegido.
-- `/app/api/*`: Endpoints del backend (estado, horarios, login).
-- `/components/*`: Componentes reutilizables (Reloj, Tabla de Horarios).
-- `/lib/store.ts`: Almacenamiento en memoria del servidor para sincronización entre clientes.
-- `/middleware.ts`: Protección de rutas administrativas.
+4. **Compilar la aplicación para producción**
+   Al ser un proyecto Next.js, se necesita compilar antes de ejecutar en producción:
+   ```bash
+   npm run build
+   ```
 
-## ⚙️ Endpoints de la API
+5. **Iniciar el servidor**
+   ```bash
+   npm run start
+   ```
 
-- `GET /api/estado`: Endpoint de monitoreo para verificar que el servidor está activo.
-- `GET /api/horarios`: Retorna el JSON con todos los horarios guardados.
-- `POST /api/horarios`: (Protegido) Sobrescribe los horarios de un día específico.
-- `POST /api/login`: Autentica al administrador y establece la cookie de sesión.
+6. **Acceder a la aplicación**
+   - Vista pública: http://localhost:3000
+   - Panel admin: http://localhost:3000/admin (Nota: ha cambiado de `admin.html` a la ruta `/admin`)
 
-## 📝 Formato de Carga (CSV)
+## 📝 Formato de Datos
 
-Para actualizar los horarios en el panel de administración, se debe usar el siguiente formato sin encabezados:
+*(Nota: Importar los datos sigue la misma mecánica o archivos provistos en la interfaz de administrador de la plataforma)*
 
-```csv
-Anatomía 1,Biomedicina - Kerly Bolaños,ANATOMÍA,07:00,FERNANDO VELASCO
-Microbiología 1,Odontología - Willy Bustillos,MICROBIOLOGÍA,07:00,TANIA ZURITA
-Sistemas Electrónicos,Biomedicina - Santiago Nuñez,BIOINSTRUMENTACIÓN,09:00,FERNANDO VELASCO
+## 🌐 Despliegue en Servidor Linux Ubuntu (Red Local)
+
+### 📦 Requisitos del Servidor
+- Ubuntu 20.04 o superior
+- Acceso root o sudo
+
+### 🔧 Paso 1: Preparar el Servidor Ubuntu
+
+```bash
+# Actualizar el sistema
+sudo apt update && sudo apt upgrade -y
+
+# Instalar Node.js 18.x (LTS) o superior
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs
+
+# Instalar Git
+sudo apt install -y git
 ```
 
-## 🔒 Notas de Seguridad y Despliegue
+### 📂 Paso 2: Transferir el Proyecto
 
-Actualmente, el sistema utiliza almacenamiento en memoria (`lib/store.ts`) y una contraseña estática en el código para facilitar el despliegue rápido en contenedores simples (como un solo instance de Cloud Run). 
+Usa SCP, FileZilla o `git clone` para trasladar el proyecto a `/home/usuario/horarios-laboratorio`.
+*(Verifica que poseas una copia local de tus variables de entorno si en el futuro decides añadirlas)*.
 
-Para entornos de producción con múltiples instancias o requerimientos de persistencia a largo plazo, se recomienda conectar el store a una base de datos real (como PostgreSQL, Redis o Firebase) y utilizar variables de entorno (`.env`) para la gestión de contraseñas.
+### ⚙️ Paso 3: Configurar y Compilar
+
+```bash
+# Navegar al proyecto
+cd /home/usuario/horarios-laboratorio
+
+# Instalar dependencias
+npm install
+
+# Compilar proyecto Next.js (MANDATORIO PARA PRODUCCIÓN)
+npm run build
+```
+
+### 🚀 Paso 4: Instalar y Configurar PM2
+
+```bash
+# Instalar PM2 globalmente
+sudo npm install -g pm2
+
+# Iniciar la aplicación en modo Next.js con PM2
+pm2 start npm --name "horarios-ups" -- start
+
+# Ver estado
+pm2 status
+
+# Configurar inicio automático
+pm2 startup systemd
+pm2 save
+```
+
+### 🌐 Paso 5: Configurar Acceso en Red Local
+
+**Verificar IP del servidor:**
+```bash
+ip addr show
+```
+
+**Configurar firewall (si está activo):**
+```bash
+sudo ufw allow 3000/tcp
+```
+Acceso: `http://192.168.1.100:3000` (Modifica la IP por tu IP de servidor local).
+
+### 🎯 Paso 6: Reverse Proxy (Opcional - Puerto 80)
+
+Si usas Nginx, la configuración es la misma de la V1, apuntando `proxy_pass http://localhost:3000;`. No hay variación en esto.
+
+### ⚠️ AVISO IMPORTANTE: Almacenamiento de Datos (V2)
+
+En esta nueva versión V2 (Next.js), el almacenamiento fue rediseñado (según `lib/store.ts`):
+- Los datos se guardan **EN MEMORIA RAM** del servidor local, no en un archivo `data/horarios.json`.
+- **Efecto:** Si reinicias la aplicación con PM2 o el servidor principal se apaga, **perderás el horario cargado** y tendrás que volver a enviarlo o cargarlo desde el panel `/admin`. 
+- *(Para tener persistencia, se debe integrar o modificar `lib/store.ts` para conectar con PostgreSQL, Firebase u otro recurso)*.
+
+### 🔄 Comandos de Mantenimiento
+
+```bash
+pm2 restart horarios-ups  # Reinicia y BORRA in-memory store
+pm2 logs horarios-ups
+pm2 monit
+```
+
+## 📁 Estructura del Proyecto V2
+
+```text
+horarios-laboratorio/
+├── app/                   # Next.js App Router (Páginas y APIs)
+│   ├── api/               # Backend en Next.js (rutas /api/estado, /api/login...)
+│   ├── admin/             # Panel de administración (Frontend)
+│   ├── page.tsx           # Vista principal (Frontend)
+│   └── globals.css        # Estilos globales y Tailwind
+├── components/            # Componentes React (Clock, ScheduleTable...)
+├── hooks/                 # Hooks personalizados de lógica
+├── lib/                   # Librerías, tipos y Store (Almacenamiento)
+├── package.json           # Dependencias
+├── next.config.ts         # Configuración del compilador de Next
+└── tsconfig.json          # Configuración de TypeScript
+```
+
+## 🔒 Seguridad
+
+- ✅ Panel admin en la ruta `/admin` protegido con sesión cifrada vía `Next/Cookies` (JWT/Cookies).
+- ✅ Credenciales alojadas en el endpoint `app/api/login/route.ts`.
+- ✅ Vista pública (`/`) de recolección de datos libre para usuarios. 
+
+## 📞 Soporte
+
+Desarrollado y mantenido por: **JIO**  
+Universidad Politécnica Salesiana  
+Año: 2025
