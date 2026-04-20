@@ -32,8 +32,8 @@ export async function POST(request: Request) {
       const cookieStore = await cookies();
       cookieStore.set('admin_auth', 'authenticated', {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
+        secure: false, // Permitir login en HTTP para red local (172.x.x.x)
+        sameSite: 'lax',
         maxAge: 60 * 60 * 24 // 1 day
       });
       

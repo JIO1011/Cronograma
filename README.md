@@ -127,9 +127,14 @@ sudo ufw allow 4000/tcp
 ```
 Acceso: `http://192.168.1.100:4000` (Modifica la IP por tu IP de servidor local).
 
-### 🎯 Paso 6: Reverse Proxy (Opcional - Puerto 80)
+### 🎯 Paso 6: Mejores Prácticas (Reverse Proxy y HTTPS)
 
-Si usas Nginx, la configuración apuntando a `proxy_pass http://localhost:4000;`.
+Aunque el aplicativo funciona corriendo directamente en el puerto `4000` (vía HTTP local), la **práctica estándar y recomendada de la industria (DevOps)** para entornos de producción, incluso en sub-redes aisladas de la universidad, exige proteger la conexión para evitar pérdida de tokens de administración:
+
+1. **Instalar NGINX:** Como Proxy Reverso interceptando el puerto `80` y `443`.
+2. **Configuración del Proxy:** Hacer un `proxy_pass http://localhost:4000;`.
+3. **Cifrado (HTTPS):** Obtener o firmar un certificado local (ej. mediante `mkcert` o tu departamento de TI local) y montarlo en Nginx. 
+4. **Política de Cookies (StrictMode):** Cuando el tráfico viaje sobre HTTPS seguro, el código fuente en `src/app/api/login/route.ts` podrá reactivar automáticamente la orden criptográfica `secure: true` para las credenciales del Administrador.
 
 ### 🛡️ Almacenamiento y Persistencia (JSON local)
 
