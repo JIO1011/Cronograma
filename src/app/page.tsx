@@ -12,15 +12,13 @@ export default async function Home() {
       {/* Header */}
       <header className="bg-white border-b border-gray-200 py-2 px-6 flex items-center justify-between shrink-0 shadow-sm z-10 relative">
         <div className="flex items-center gap-4 w-1/3">
-          <div className="flex items-center gap-2">
-            <div className="text-[#003b7a]">
-              <Globe size={32} strokeWidth={1.5} />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-[#003b7a] font-bold text-[8px] leading-none tracking-wider">UNIVERSIDAD POLITÉCNICA</span>
-              <span className="text-[#003b7a] font-black text-xl leading-none tracking-tight">SALESIANA</span>
-              <span className="text-[#003b7a] text-[7px] leading-none text-right tracking-widest mt-0.5">ECUADOR</span>
-            </div>
+          <div className="flex items-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img 
+              src="/images.png" 
+              alt="Logo Universidad Politécnica Salesiana" 
+              className="h-12 w-auto object-contain" 
+            />
           </div>
         </div>
 

@@ -35,9 +35,10 @@ Aplicación web moderna para gestionar y visualizar horarios de laboratorios en 
    ```
 
 3. **Configurar contraseña de administrador**
-   La contraseña ya no se maneja por un archivo `.env` inicialmente. Por simplicidad, se encuentra alojada en el código fuente:
-   - Ve al archivo `app/api/login/route.ts`
-   - Cambia la constante `const ADMIN_PASSWORD = 'admin';` por la contraseña deseada.
+   El sistema requiere un archivo de entorno con la contraseña maestra para habilitar el panel:
+   - Crea un archivo `.env.local` en la raíz del proyecto.
+   - Agrega la siguiente línea y pon la clave que desees:
+     `ADMIN_PASSWORD=admin123`
 
 4. **Compilar la aplicación para producción**
    Al ser un proyecto Next.js, se necesita compilar antes de ejecutar en producción:
@@ -51,8 +52,8 @@ Aplicación web moderna para gestionar y visualizar horarios de laboratorios en 
    ```
 
 6. **Acceder a la aplicación**
-   - Vista pública: http://localhost:3000
-   - Panel admin: http://localhost:3000/admin (Nota: ha cambiado de `admin.html` a la ruta `/admin`)
+   - Vista pública: http://localhost:4000
+   - Panel admin: http://localhost:4000/admin
 
 ## 📝 Formato de Datos
 
@@ -122,25 +123,24 @@ ip addr show
 
 **Configurar firewall (si está activo):**
 ```bash
-sudo ufw allow 3000/tcp
+sudo ufw allow 4000/tcp
 ```
-Acceso: `http://192.168.1.100:3000` (Modifica la IP por tu IP de servidor local).
+Acceso: `http://192.168.1.100:4000` (Modifica la IP por tu IP de servidor local).
 
 ### 🎯 Paso 6: Reverse Proxy (Opcional - Puerto 80)
 
-Si usas Nginx, la configuración es la misma de la V1, apuntando `proxy_pass http://localhost:3000;`. No hay variación en esto.
+Si usas Nginx, la configuración apuntando a `proxy_pass http://localhost:4000;`.
 
-### ⚠️ AVISO IMPORTANTE: Almacenamiento de Datos (V2)
+### 🛡️ Almacenamiento y Persistencia (JSON local)
 
-En esta nueva versión V2 (Next.js), el almacenamiento fue rediseñado (según `lib/store.ts`):
-- Los datos se guardan **EN MEMORIA RAM** del servidor local, no en un archivo `data/horarios.json`.
-- **Efecto:** Si reinicias la aplicación con PM2 o el servidor principal se apaga, **perderás el horario cargado** y tendrás que volver a enviarlo o cargarlo desde el panel `/admin`. 
-- *(Para tener persistencia, se debe integrar o modificar `lib/store.ts` para conectar con PostgreSQL, Firebase u otro recurso)*.
+El almacenamiento de datos (según `src/features/schedule/store.ts` y las _Server Actions_):
+- Los datos y cronogramas se leen y escriben dinámicamente en el archivo local **`data/horarios.json`**.
+- **Efecto Post-Reinicio:** Al persistir los datos en `data/horarios.json`, si PM2 reinicia la aplicación o el servidor se corta, **NO PERDERÁS NINGÚN DATO**.
 
 ### 🔄 Comandos de Mantenimiento
 
 ```bash
-pm2 restart horarios-ups  # Reinicia y BORRA in-memory store
+pm2 restart horarios-ups
 pm2 logs horarios-ups
 pm2 monit
 ```

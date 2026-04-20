@@ -52,11 +52,11 @@ export function ScheduleTable({ schedule }: ScheduleTableProps) {
       const diffMins = differenceInMinutes(classTime, currentTime);
 
       if (diffMins > 0 && diffMins <= 7) {
-        return 'bg-emerald-100/70 hover:bg-emerald-100 border-l-4 border-emerald-500'; // Green: Ingreso habilitado (-7 min)
+        return 'bg-green-100/90 hover:bg-green-200 border-l-[5px] border-green-600'; // Green: Ingreso habilitado (-7 min)
       } else if (diffMins <= 0 && diffMins >= -7) {
-        return 'bg-amber-100/70 hover:bg-amber-100 border-l-4 border-amber-500'; // Orange: Iniciando ahora (0-7 min)
+        return 'bg-amber-100/70 hover:bg-amber-100 border-l-[4px] border-amber-500'; // Orange: Iniciando ahora (0-7 min)
       } else if (diffMins < -7) {
-        return 'bg-red-100/70 hover:bg-red-100 border-l-4 border-red-500'; // Red: En curso o finalizada
+        return 'bg-red-100/70 hover:bg-red-100 border-l-[4px] border-red-500'; // Red: En curso o finalizada
       }
       return 'bg-white hover:bg-gray-50 border-l-4 border-transparent'; // Future
     } catch (e) {
@@ -147,7 +147,7 @@ export function ScheduleTable({ schedule }: ScheduleTableProps) {
       {/* Legend */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 mt-2 p-3 flex items-center justify-center gap-8 shrink-0">
         <div className="flex items-center gap-2 text-xs text-gray-600 font-medium">
-          <div className="w-3 h-3 rounded-full bg-[#10b981]" />
+          <div className="w-3 h-3 rounded-full bg-green-600" />
           <span>Ingreso habilitado (-7 min)</span>
         </div>
         <div className="flex items-center gap-2 text-xs text-gray-600 font-medium">
