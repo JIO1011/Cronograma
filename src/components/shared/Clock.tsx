@@ -36,7 +36,7 @@ export function Clock({ rowCount = 0 }: ClockProps) {
 
   if (!mounted) {
     return (
-      <div className={`flex flex-col items-center justify-center ${scale.pt}`}>
+      <div className={`flex flex-col items-center justify-center shrink-0 transition-all duration-500 ${scale.pt}`}>
         <div className={`${scale.time} font-bold text-[#1a1d2d] leading-none tracking-tight font-sans transition-all duration-500`}>
           --:--:--
         </div>
