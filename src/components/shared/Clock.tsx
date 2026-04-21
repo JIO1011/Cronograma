@@ -25,11 +25,11 @@ export function Clock({ rowCount = 0 }: ClockProps) {
   const isEmpty = rowCount === 0;
 
   const getClockScale = () => {
-    if (isEmpty) return { pt: 'pt-16 pb-12', time: 'text-[180px]', date: 'text-[46px]', mt: 'mt-4' };
-    if (rowCount >= 9) return { pt: 'pt-2 pb-2', time: 'text-[85px]', date: 'text-[20px]', mt: 'mt-0' };
-    if (rowCount === 8) return { pt: 'pt-3 pb-2', time: 'text-[110px]', date: 'text-[24px]', mt: 'mt-1' };
-    if (rowCount === 7) return { pt: 'pt-5 pb-4', time: 'text-[125px]', date: 'text-[28px]', mt: 'mt-2' };
-    return { pt: 'pt-8 pb-6', time: 'text-[140px]', date: 'text-[32px]', mt: 'mt-2' };
+    if (isEmpty) return { pt: 'py-6 md:py-12 lg:py-16', time: 'text-[clamp(4rem,15vh,180px)]', date: 'text-[clamp(1.5rem,4vh,46px)]', mt: 'mt-4' };
+    if (rowCount >= 9) return { pt: 'py-1 md:py-2', time: 'text-[clamp(2.5rem,8vh,85px)]', date: 'text-[clamp(1rem,2vh,20px)]', mt: 'mt-0' };
+    if (rowCount === 8) return { pt: 'py-2 md:py-3', time: 'text-[clamp(3rem,9vh,110px)]', date: 'text-[clamp(1.2rem,2.5vh,24px)]', mt: 'mt-1' };
+    if (rowCount === 7) return { pt: 'py-3 md:py-5', time: 'text-[clamp(3.5rem,10vh,125px)]', date: 'text-[clamp(1.3rem,3vh,28px)]', mt: 'mt-2' };
+    return { pt: 'py-4 md:py-8', time: 'text-[clamp(4rem,12vh,140px)]', date: 'text-[clamp(1.5rem,3.5vh,32px)]', mt: 'mt-2' };
   };
 
   const scale = getClockScale();

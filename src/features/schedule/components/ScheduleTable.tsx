@@ -50,35 +50,35 @@ export function ScheduleTable({ schedule }: ScheduleTableProps) {
   const getAdaptiveClasses = () => {
     if (rowCount >= 9) {
       return {
-        headerPad: 'p-1.5 pl-4',
-        headerText: 'text-[11px]',
-        rowPad: 'p-1.5 pl-3',
-        rowText: 'text-[12px]',
+        headerPad: 'p-1.5 pl-2 md:pl-4',
+        headerText: 'text-[clamp(9px,1.2vh,11px)]',
+        rowPad: 'py-1 px-2 md:pl-3',
+        rowText: 'text-[clamp(10px,1.5vh,12px)]',
         gap: 'gap-1',
       };
     } else if (rowCount === 8) {
       return {
-        headerPad: 'p-2 pl-5',
-        headerText: 'text-xs',
-        rowPad: 'p-2 pl-4',
-        rowText: 'text-[13px]',
-        gap: 'gap-2',
+        headerPad: 'p-2 pl-3 md:pl-5',
+        headerText: 'text-[clamp(10px,1.5vh,12px)]',
+        rowPad: 'py-1.5 px-3 md:pl-4',
+        rowText: 'text-[clamp(11px,1.8vh,13px)]',
+        gap: 'gap-1 md:gap-2',
       };
     } else if (rowCount === 7) {
       return {
-        headerPad: 'p-3 pl-6',
-        headerText: 'text-[13px]',
-        rowPad: 'p-3 pl-5',
-        rowText: 'text-[14px]',
-        gap: 'gap-3',
+        headerPad: 'p-2 md:p-3 pl-4 md:pl-6',
+        headerText: 'text-[clamp(11px,1.8vh,13px)]',
+        rowPad: 'py-2 px-4 md:pl-5',
+        rowText: 'text-[clamp(12px,2vh,14px)]',
+        gap: 'gap-2 md:gap-3',
       };
     } else {
       return {
-        headerPad: 'p-4 pl-8',
-        headerText: 'text-sm',
-        rowPad: 'p-4 pl-6',
-        rowText: 'text-[15px]',
-        gap: 'gap-4',
+        headerPad: 'p-3 md:p-4 pl-4 md:pl-8',
+        headerText: 'text-[clamp(12px,2vh,14px)]',
+        rowPad: 'py-2 md:py-3 px-4 md:pl-6',
+        rowText: 'text-[clamp(13px,2.5vh,15px)]',
+        gap: 'gap-2 md:gap-4',
       };
     }
   };
@@ -86,11 +86,11 @@ export function ScheduleTable({ schedule }: ScheduleTableProps) {
   const density = getAdaptiveClasses();
 
   return (
-    <div className="w-full max-w-[1400px] mx-auto px-8 flex-1 flex flex-col justify-center overflow-hidden pb-4">
+    <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8 flex-1 flex flex-col justify-start mt-2 mb-auto overflow-hidden pb-4">
       <Clock rowCount={rowCount} />
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col shrink-0">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col min-h-0 w-full overflow-x-auto">
         {/* Table Header */}
-        <div className={`bg-[#232845] text-white grid grid-cols-[120px_1.5fr_1.5fr_1.5fr_100px_1.5fr] font-semibold tracking-wider ${density.gap} ${density.headerPad} ${density.headerText}`}>
+        <div className={`bg-[#232845] text-white grid grid-cols-[80px_1fr_1fr_1fr_80px_1fr] md:grid-cols-[120px_1.5fr_1.5fr_1.5fr_100px_1.5fr] font-semibold tracking-wider min-w-[700px] md:min-w-0 ${density.gap} ${density.headerPad} ${density.headerText}`}>
           <div>DÍA</div>
           <div>MATERIA</div>
           <div>PROFESOR</div>
@@ -110,7 +110,7 @@ export function ScheduleTable({ schedule }: ScheduleTableProps) {
               {todaySchedule.map((item) => (
                 <div 
                   key={item.id} 
-                  className={`grid grid-cols-[120px_1.5fr_1.5fr_1.5fr_100px_1.5fr] items-center transition-colors text-gray-800 ${density.gap} ${density.rowPad} ${density.rowText} ${getStatusColor(item.diffMins)}`}
+                  className={`grid grid-cols-[80px_1fr_1fr_1fr_80px_1fr] md:grid-cols-[120px_1.5fr_1.5fr_1.5fr_100px_1.5fr] min-w-[700px] md:min-w-0 items-center transition-colors text-gray-800 ${density.gap} ${density.rowPad} ${density.rowText} ${getStatusColor(item.diffMins)}`}
                 >
                   <div className="font-semibold capitalize text-[#1e233a]">{item.dia}</div>
                   <div>{item.materia}</div>
@@ -126,16 +126,16 @@ export function ScheduleTable({ schedule }: ScheduleTableProps) {
       </div>
 
       {/* Legend */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 mt-2 p-3 flex items-center justify-center gap-8 shrink-0">
-        <div className="flex items-center gap-2 text-xs text-gray-600 font-medium">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 mt-2 p-2 flex flex-wrap items-center justify-center gap-4 md:gap-8 shrink-0">
+        <div className="flex items-center gap-2 text-[clamp(10px,1.5vh,12px)] text-gray-600 font-medium">
           <div className="w-3 h-3 rounded-full bg-green-600" />
           <span>Ingreso habilitado (-7 min)</span>
         </div>
-        <div className="flex items-center gap-2 text-xs text-gray-600 font-medium">
+        <div className="flex items-center gap-2 text-[clamp(10px,1.5vh,12px)] text-gray-600 font-medium">
           <div className="w-3 h-3 rounded-full bg-[#f59e0b]" />
           <span>Iniciando ahora (0-7 min)</span>
         </div>
-        <div className="flex items-center gap-2 text-xs text-gray-600 font-medium">
+        <div className="flex items-center gap-2 text-[clamp(10px,1.5vh,12px)] text-gray-600 font-medium">
           <div className="w-3 h-3 rounded-full bg-[#ef4444]" />
           <span>En curso o finalizada</span>
         </div>
