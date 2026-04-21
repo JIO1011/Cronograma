@@ -1,4 +1,4 @@
-import { Settings2, Globe } from 'lucide-react';
+import { Settings2 } from 'lucide-react';
 import { ScheduleTable } from '@/features/schedule/components/ScheduleTable';
 import { fetchScheduleAction } from '@/features/schedule/actions';
 import Link from 'next/link';

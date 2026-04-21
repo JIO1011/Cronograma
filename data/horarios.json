@@ -1,1 +1,515 @@
-[]
+[
+  {
+    "materia": "Histología Bucodental 7",
+    "profesor": "Odontología - Andrea Morales",
+    "laboratorio": "CIENCIAS BIOLÓGICAS",
+    "hora": "07:00",
+    "encargado": "BELÉN MONTALUISA",
+    "id": "Martes-1776774408355-0",
+    "dia": "Martes"
+  },
+  {
+    "materia": "Histología Bucodental 7",
+    "profesor": "Odontología - Andrea Morales",
+    "laboratorio": "CIENCIAS BIOLÓGICAS",
+    "hora": "09:00",
+    "encargado": "BELÉN MONTALUISA",
+    "id": "Martes-1776774408355-1",
+    "dia": "Martes"
+  },
+  {
+    "materia": "Microbiología 1",
+    "profesor": "Odontología - Edison Osorio",
+    "laboratorio": "MICROBIOLOGÍA",
+    "hora": "07:00",
+    "encargado": "TANIA ZURITA",
+    "id": "Martes-1776774408355-2",
+    "dia": "Martes"
+  },
+  {
+    "materia": "Microbiología 1",
+    "profesor": "Odontología - Edison Osorio",
+    "laboratorio": "MICROBIOLOGÍA",
+    "hora": "09:00",
+    "encargado": "TANIA ZURITA",
+    "id": "Martes-1776774408355-3",
+    "dia": "Martes"
+  },
+  {
+    "materia": "Química Orgánica",
+    "profesor": "Biotecnología - Diana López",
+    "laboratorio": "FITOQUÍMICA Y BIOENSAYOS",
+    "hora": "09:00",
+    "encargado": "JONATHAN CHAUCA",
+    "id": "Martes-1776774408355-4",
+    "dia": "Martes"
+  },
+  {
+    "materia": "Biotecnología Vegetal",
+    "profesor": "Biotecnología - Ivonne Vaca",
+    "laboratorio": "BIOTECNOLOGÍA VEGETAL",
+    "hora": "09:00",
+    "encargado": "GABRIELA CISNEROS",
+    "id": "Martes-1776774408355-5",
+    "dia": "Martes"
+  },
+  {
+    "materia": "Botánica Aplicada",
+    "profesor": "Biotecnología - Diana Calero",
+    "laboratorio": "CIENCIAS GENERALES I",
+    "hora": "11:00",
+    "encargado": "JONATHAN CHAUCA",
+    "id": "Martes-1776774408355-6",
+    "dia": "Martes"
+  },
+  {
+    "materia": "Dinámica",
+    "profesor": "Biomedicina - Micaela Villa",
+    "laboratorio": "FÍSICA",
+    "hora": "11:00",
+    "encargado": "FERNANDO VELASCO",
+    "id": "Martes-1776774408355-7",
+    "dia": "Martes"
+  },
+  {
+    "materia": "Integración Curricular2",
+    "profesor": "Biomedicina - Santiago Nuñez",
+    "laboratorio": "BIOINSTRUMENTACIÓN",
+    "hora": "11:00",
+    "encargado": "FERNANDO VELASCO",
+    "id": "Martes-1776774408355-8",
+    "dia": "Martes"
+  },
+  {
+    "materia": "Química Orgánica",
+    "profesor": "Biomedicina - Ronald Bravo",
+    "laboratorio": "ANATOMÍA",
+    "hora": "12:00",
+    "encargado": "FERNANDO VELASCO",
+    "id": "Martes-1776774408355-9",
+    "dia": "Martes"
+  },
+  {
+    "materia": "Microbiologia 2",
+    "profesor": "Odontología - Yadira Cáceres",
+    "laboratorio": "MICROBIOLOGÍA",
+    "hora": "13:30",
+    "encargado": "BRYAN RAMOS",
+    "id": "Martes-1776774408355-10",
+    "dia": "Martes"
+  },
+  {
+    "materia": "Microbiología 2",
+    "profesor": "Odontología - Marco Ibarra",
+    "laboratorio": "CIENCIAS GENERALES II",
+    "hora": "14:00",
+    "encargado": "GABRIELA CISNEROS",
+    "id": "Martes-1776774408355-11",
+    "dia": "Martes"
+  },
+  {
+    "materia": "Ingeniería en Rehabilitación",
+    "profesor": "Biomedicina - Kerly Bolaños",
+    "laboratorio": "REHABILITACIÓN",
+    "hora": "15:00",
+    "encargado": "FERNANDO VELASCO",
+    "id": "Martes-1776774408355-12",
+    "dia": "Martes"
+  },
+  {
+    "materia": "Dispositivos Biomédicos II",
+    "profesor": "Biomedicina - Santiago Obando",
+    "laboratorio": "DISPOSTIVOS BIOMÉDICOS",
+    "hora": "17:00",
+    "encargado": "FERNANDO VELASCO",
+    "id": "Martes-1776774408355-13",
+    "dia": "Martes"
+  },
+  {
+    "materia": "Química Orgánica2",
+    "profesor": "Biomedicina - Ronald Bravo",
+    "laboratorio": "ANATOMÍA",
+    "hora": "07:00",
+    "encargado": "EMILIO INLAGO",
+    "id": "Miercoles-1776774462829-0",
+    "dia": "Miercoles"
+  },
+  {
+    "materia": "Biología Humana",
+    "profesor": "Biotecnología - Marco Cerna",
+    "laboratorio": "CIENCIAS GENERALES I",
+    "hora": "09:00",
+    "encargado": "BELÉN MONTALUISA",
+    "id": "Miercoles-1776774462829-1",
+    "dia": "Miercoles"
+  },
+  {
+    "materia": "Fisiología",
+    "profesor": "Biomedicina - Kerly Bolaños",
+    "laboratorio": "ANATOMÍA",
+    "hora": "09:00",
+    "encargado": "EMILIO INLAGO",
+    "id": "Miercoles-1776774462829-2",
+    "dia": "Miercoles"
+  },
+  {
+    "materia": "Ing. Clínica y Hospitalaria",
+    "profesor": "Biomedicina - Santiago Nuñez",
+    "laboratorio": "BIOINSTRUMENTACIÓN",
+    "hora": "10:00",
+    "encargado": "EMILIO INLAGO",
+    "id": "Miercoles-1776774462829-3",
+    "dia": "Miercoles"
+  },
+  {
+    "materia": "Farmacognosia",
+    "profesor": "Biotecnología - Ma. Elena Maldonado",
+    "laboratorio": "FITOQUÍMICA Y BIOENSAYOS",
+    "hora": "11:00",
+    "encargado": "BRYAN RAMOS",
+    "id": "Miercoles-1776774462829-4",
+    "dia": "Miercoles"
+  },
+  {
+    "materia": "Anatomía 2",
+    "profesor": "Biomedicina - Kerly Bolaños",
+    "laboratorio": "ANATOMÍA",
+    "hora": "11:00",
+    "encargado": "FERNANDO VELASCO",
+    "id": "Miercoles-1776774462829-5",
+    "dia": "Miercoles"
+  },
+  {
+    "materia": "Biotecnología Humana",
+    "profesor": "Biotecnología - Viviana Chiluisa",
+    "laboratorio": "CIENCIAS BIOLÓGICAS",
+    "hora": "11:00",
+    "encargado": "JONATHAN CHAUCA",
+    "id": "Miercoles-1776774462829-6",
+    "dia": "Miercoles"
+  },
+  {
+    "materia": "Histología Bucodental 6A",
+    "profesor": "Odontología - Michael Santorum",
+    "laboratorio": "ANATOMÍA",
+    "hora": "13:30",
+    "encargado": "JONATHAN CHAUCA",
+    "id": "Miercoles-1776774462829-7",
+    "dia": "Miercoles"
+  },
+  {
+    "materia": "Genética Molecular",
+    "profesor": "Biotecnología - Marco Cerna",
+    "laboratorio": "BIOLOGÍA MOLECULAR",
+    "hora": "14:00",
+    "encargado": "BELÉN MONTALUISA",
+    "id": "Miercoles-1776774462829-8",
+    "dia": "Miercoles"
+  },
+  {
+    "materia": "Biotecnología Ambiental",
+    "profesor": "Biotecnología - Laura Huachi",
+    "laboratorio": "CIENCIAS GENERALES II",
+    "hora": "14:00",
+    "encargado": "GABRIELA CISNEROS",
+    "id": "Miercoles-1776774462829-9",
+    "dia": "Miercoles"
+  },
+  {
+    "materia": "Química Analítica",
+    "profesor": "Biotecnología - Diana López",
+    "laboratorio": "CIENCIAS GENERALES I",
+    "hora": "15:00",
+    "encargado": "BRYAN RAMOS",
+    "id": "Miercoles-1776774462829-10",
+    "dia": "Miercoles"
+  },
+  {
+    "materia": "Histología Bucodental 6B",
+    "profesor": "Odontología - Michael Santorum",
+    "laboratorio": "ANATOMÍA",
+    "hora": "15:30",
+    "encargado": "CAMILA NARANJO",
+    "id": "Miercoles-1776774462829-11",
+    "dia": "Miercoles"
+  },
+  {
+    "materia": "Dispositivos Biomédicos I",
+    "profesor": "Biomedicina - Santiago Obando",
+    "laboratorio": "DISPOSTIVOS BIOMÉDICOS",
+    "hora": "17:00",
+    "encargado": "FERNANDO VELASCO",
+    "id": "Miercoles-1776774462829-12",
+    "dia": "Miercoles"
+  },
+  {
+    "materia": "Anatomía",
+    "profesor": "Biomedicina - Kerly Bolaños",
+    "laboratorio": "HISTOLOGÍA",
+    "hora": "07:00",
+    "encargado": "EMILIO INLAGO",
+    "id": "Jueves-1776774516499-0",
+    "dia": "Jueves"
+  },
+  {
+    "materia": "Biomecánica",
+    "profesor": "Biomedicina - Micaela Villa",
+    "laboratorio": "BIOINSTRUMENTACIÓN",
+    "hora": "07:00",
+    "encargado": "EMILIO INLAGO",
+    "id": "Jueves-1776774516499-1",
+    "dia": "Jueves"
+  },
+  {
+    "materia": "Histología Bucodental 8A",
+    "profesor": "Odontología - Michael Santorum",
+    "laboratorio": "ANATOMÍA",
+    "hora": "07:00",
+    "encargado": "JONATHAN CHAUCA",
+    "id": "Jueves-1776774516499-2",
+    "dia": "Jueves"
+  },
+  {
+    "materia": "Inmunología 3",
+    "profesor": "Odontología - Patricia Gutierrez",
+    "laboratorio": "CIENCIAS BIOLÓGICAS",
+    "hora": "07:00",
+    "encargado": "TANIA ZURITA",
+    "id": "Jueves-1776774516499-3",
+    "dia": "Jueves"
+  },
+  {
+    "materia": "Química",
+    "profesor": "Biotecnología - Diana López",
+    "laboratorio": "QUÍMICA",
+    "hora": "09:00",
+    "encargado": "CAMILA NARANJO",
+    "id": "Jueves-1776774516499-4",
+    "dia": "Jueves"
+  },
+  {
+    "materia": "Estática",
+    "profesor": "Biomedicina - Micaela Villa",
+    "laboratorio": "FÍSICA",
+    "hora": "09:00",
+    "encargado": "EMILIO INLAGO",
+    "id": "Jueves-1776774516499-5",
+    "dia": "Jueves"
+  },
+  {
+    "materia": "Biología Molecular",
+    "profesor": "Biotecnología - Viviana Chiluisa",
+    "laboratorio": "BIOLOGÍA MOLECULAR",
+    "hora": "09:00",
+    "encargado": "BELÉN MONTALUISA",
+    "id": "Jueves-1776774516499-6",
+    "dia": "Jueves"
+  },
+  {
+    "materia": "Fundamentos de Bioinstrumentación",
+    "profesor": "Biomedicina - Santiago Nuñez",
+    "laboratorio": "BIOINSTRUMENTACIÓN",
+    "hora": "09:00",
+    "encargado": "EMILIO INLAGO",
+    "id": "Jueves-1776774516499-7",
+    "dia": "Jueves"
+  },
+  {
+    "materia": "Histología",
+    "profesor": "Biomedicina - Kerly Bolaños",
+    "laboratorio": "HISTOLOGÍA",
+    "hora": "09:00",
+    "encargado": "EMILIO INLAGO",
+    "id": "Jueves-1776774516499-8",
+    "dia": "Jueves"
+  },
+  {
+    "materia": "Microbiología",
+    "profesor": "Biotecnología - Gabriela Méndez",
+    "laboratorio": "CIENCIAS GENERALES II",
+    "hora": "09:00",
+    "encargado": "GABRIELA CISNEROS",
+    "id": "Jueves-1776774516499-9",
+    "dia": "Jueves"
+  },
+  {
+    "materia": "Histología Bucodental 8B",
+    "profesor": "Odontología - Michael Santorum",
+    "laboratorio": "ANATOMÍA",
+    "hora": "09:00",
+    "encargado": "JONATHAN CHAUCA",
+    "id": "Jueves-1776774516499-10",
+    "dia": "Jueves"
+  },
+  {
+    "materia": "Inmunología 1",
+    "profesor": "Odontología - Patricia Gutierrez",
+    "laboratorio": "CIENCIAS BIOLÓGICAS",
+    "hora": "09:00",
+    "encargado": "TANIA ZURITA",
+    "id": "Jueves-1776774516499-11",
+    "dia": "Jueves"
+  },
+  {
+    "materia": "Física",
+    "profesor": "Biotecnología - Rodrigo Miño",
+    "laboratorio": "FÍSICA",
+    "hora": "10:00",
+    "encargado": "EMILIO INLAGO",
+    "id": "Jueves-1776774516499-12",
+    "dia": "Jueves"
+  },
+  {
+    "materia": "Fisiología",
+    "profesor": "Biomedicina - Kerly Bolaños",
+    "laboratorio": "BIOSEÑALES",
+    "hora": "11:00",
+    "encargado": "FERNANDO VELASCO",
+    "id": "Jueves-1776774516499-13",
+    "dia": "Jueves"
+  },
+  {
+    "materia": "Microbiologia 1",
+    "profesor": "Odontología - Yadira Cáceres",
+    "laboratorio": "MICROBIOLOGÍA",
+    "hora": "13:30",
+    "encargado": "BRYAN RAMOS",
+    "id": "Jueves-1776774516499-14",
+    "dia": "Jueves"
+  },
+  {
+    "materia": "Sistemas Electrónicos2",
+    "profesor": "Biomedicina - Santiago Nuñez",
+    "laboratorio": "BIOINSTRUMENTACIÓN",
+    "hora": "14:00",
+    "encargado": "FERNANDO VELASCO",
+    "id": "Jueves-1776774516499-15",
+    "dia": "Jueves"
+  },
+  {
+    "materia": "Microbiología 2",
+    "profesor": "Odontología - Yadira Cáceres",
+    "laboratorio": "MICROBIOLOGÍA",
+    "hora": "15:30",
+    "encargado": "BRYAN RAMOS",
+    "id": "Jueves-1776774516499-16",
+    "dia": "Jueves"
+  },
+  {
+    "materia": "Bioquímica General 2",
+    "profesor": "Odontología - Sebastián Piedra",
+    "laboratorio": "QUÍMICA",
+    "hora": "15:30",
+    "encargado": "CAMILA NARANJO",
+    "id": "Jueves-1776774516499-17",
+    "dia": "Jueves"
+  },
+  {
+    "materia": "Dispositivos Biomédicos II",
+    "profesor": "Biomedicina - Santiago Obando",
+    "laboratorio": "DISPOSTIVOS BIOMÉDICOS",
+    "hora": "17:00",
+    "encargado": "FERNANDO VELASCO",
+    "id": "Jueves-1776774516499-18",
+    "dia": "Jueves"
+  },
+  {
+    "materia": "Biomateriales",
+    "profesor": "Biomedicina - Micaela Villa",
+    "laboratorio": "HISTOLOGÍA",
+    "hora": "07:00",
+    "encargado": "EMILIO INLAGO",
+    "id": "Viernes-1776774554029-0",
+    "dia": "Viernes"
+  },
+  {
+    "materia": "Integración Curricular",
+    "profesor": "Biomedicina - Santiago Nuñez",
+    "laboratorio": "BIOINSTRUMENTACIÓN",
+    "hora": "07:00",
+    "encargado": "EMILIO INLAGO",
+    "id": "Viernes-1776774554029-1",
+    "dia": "Viernes"
+  },
+  {
+    "materia": "Enzimología",
+    "profesor": "Biotecnología - Edison Osorio",
+    "laboratorio": "CIENCIAS BIOLÓGICAS",
+    "hora": "07:00",
+    "encargado": "TANIA ZURITA",
+    "id": "Viernes-1776774554029-2",
+    "dia": "Viernes"
+  },
+  {
+    "materia": "Bioética",
+    "profesor": "Biomedicina - Kerly Bolaños",
+    "laboratorio": "ANATOMÍA",
+    "hora": "07:00",
+    "encargado": "EMILIO INLAGO",
+    "id": "Viernes-1776774554029-3",
+    "dia": "Viernes"
+  },
+  {
+    "materia": "Farmacología",
+    "profesor": "Biotecnología - Ma. Elena Maldonado",
+    "laboratorio": "FITOQUÍMICA Y BIOENSAYOS",
+    "hora": "09:00",
+    "encargado": "BELÉN MONTALUISA",
+    "id": "Viernes-1776774554029-4",
+    "dia": "Viernes"
+  },
+  {
+    "materia": "Microbiología 2",
+    "profesor": "Biotecnología - Edison Osorio",
+    "laboratorio": "MICROBIOLOGÍA",
+    "hora": "09:00",
+    "encargado": "TANIA ZURITA",
+    "id": "Viernes-1776774554029-5",
+    "dia": "Viernes"
+  },
+  {
+    "materia": "Biotecnología Industrial",
+    "profesor": "Biotecnología - Edison Osorio",
+    "laboratorio": "CIENCIAS GENERALES II",
+    "hora": "11:00",
+    "encargado": "BELÉN MONTALUISA",
+    "id": "Viernes-1776774554029-6",
+    "dia": "Viernes"
+  },
+  {
+    "materia": "Biología e Histología",
+    "profesor": "Biomedicina - Kerly Bolaños",
+    "laboratorio": "ANATOMÍA",
+    "hora": "11:00",
+    "encargado": "FERNANDO VELASCO",
+    "id": "Viernes-1776774554029-7",
+    "dia": "Viernes"
+  },
+  {
+    "materia": "Biología",
+    "profesor": "Biotecnología - Laura Huachi",
+    "laboratorio": "CIENCIAS GENERALES I",
+    "hora": "11:00",
+    "encargado": "JONATHAN CHAUCA",
+    "id": "Viernes-1776774554029-8",
+    "dia": "Viernes"
+  },
+  {
+    "materia": "Fitopatología",
+    "profesor": "Biotecnología - Laura Huachi",
+    "laboratorio": "MICROBIOLOGÍA",
+    "hora": "14:00",
+    "encargado": "CAMILA NARANJO",
+    "id": "Viernes-1776774554029-9",
+    "dia": "Viernes"
+  },
+  {
+    "materia": "Inmunología 2",
+    "profesor": "Odontología - Patricia Gutierrez",
+    "laboratorio": "HISTOLOGÍA",
+    "hora": "15:30",
+    "encargado": "BRYAN RAMOS",
+    "id": "Viernes-1776774554029-10",
+    "dia": "Viernes"
+  }
+]

@@ -9,12 +9,13 @@ import { DayOfWeek } from '../types';
 
 interface AdminCSVUploaderProps {
   selectedDay: DayOfWeek;
+  csvText: string;
+  onChangeCsv: (text: string) => void;
 }
 
-export function AdminCSVUploader({ selectedDay }: AdminCSVUploaderProps) {
+export function AdminCSVUploader({ selectedDay, csvText, onChangeCsv }: AdminCSVUploaderProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
-  const [csvText, setCsvText] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
@@ -46,7 +47,7 @@ export function AdminCSVUploader({ selectedDay }: AdminCSVUploaderProps) {
               setError(res.error as string);
             } else {
               setSuccess(`Horarios guardados exitosamente para el día ${selectedDay}.`);
-              setCsvText('');
+              onChangeCsv('');
               router.refresh();
             }
           } catch (e: any) {
@@ -61,7 +62,7 @@ export function AdminCSVUploader({ selectedDay }: AdminCSVUploaderProps) {
   };
 
   const handleClearForm = () => {
-    setCsvText('');
+    onChangeCsv('');
     setError('');
     setSuccess('');
   };
@@ -78,7 +79,7 @@ export function AdminCSVUploader({ selectedDay }: AdminCSVUploaderProps) {
       </div>
       <textarea
         value={csvText}
-        onChange={(e) => setCsvText(e.target.value)}
+        onChange={(e) => onChangeCsv(e.target.value)}
         className="flex-1 min-h-[150px] w-full border border-gray-300 rounded-lg p-4 font-mono text-[13px] focus:ring-2 focus:ring-[#5b4cfa] focus:border-[#5b4cfa] outline-none resize-none shadow-sm disabled:opacity-50"
         placeholder="Anatomía 1,Biomedicina - Kerly Bolaños,ANATOMÍA,07:00,FERNANDO VELASCO..."
         disabled={isPending}

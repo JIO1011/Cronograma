@@ -1,13 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { DayOfWeek, ScheduleItem } from '../types';
+import { DayOfWeek, ScheduleItem, FULL_WEEK, WORKING_DAYS } from '../types';
 import { ArrowLeft, LogOut } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { AdminCSVUploader } from './AdminCSVUploader';
 import { AdminEditorTable } from './AdminEditorTable';
-
-const DAYS: DayOfWeek[] = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes'];
 
 interface AdminClientProps {
   initialSchedule: ScheduleItem[];
@@ -17,13 +15,19 @@ export function AdminClient({ initialSchedule }: AdminClientProps) {
   const router = useRouter();
   const [schedule, setSchedule] = useState<ScheduleItem[]>(initialSchedule);
   const [selectedDay, setSelectedDay] = useState<DayOfWeek>('Lunes');
+  
+  // Per-day CSV text retention dictionary
+  const [csvDataByDay, setCsvDataByDay] = useState<Record<string, string>>({});
+
+  const handleCsvChange = (text: string) => {
+    setCsvDataByDay(prev => ({ ...prev, [selectedDay]: text }));
+  };
 
   // Default to today
   useEffect(() => {
     const today = new Date().getDay();
-    const daysMap: DayOfWeek[] = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
     if (today > 0 && today < 6) {
-      setSelectedDay(daysMap[today] as DayOfWeek);
+      setSelectedDay(FULL_WEEK[today] as DayOfWeek);
     }
   }, []);
 
@@ -58,7 +62,7 @@ export function AdminClient({ initialSchedule }: AdminClientProps) {
           <div className="mb-6 shrink-0">
             <h2 className="text-sm font-bold text-gray-700 uppercase tracking-wider mb-4">Selecciona el Día</h2>
             <div className="flex flex-wrap gap-3">
-              {DAYS.map(day => (
+              {WORKING_DAYS.map(day => (
                 <button
                   key={day}
                   onClick={() => setSelectedDay(day)}
@@ -76,7 +80,12 @@ export function AdminClient({ initialSchedule }: AdminClientProps) {
 
           <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 overflow-hidden">
             {/* Left: Input */}
-            <AdminCSVUploader key={`uploader-${selectedDay}`} selectedDay={selectedDay} />
+            <AdminCSVUploader 
+              key={`uploader-${selectedDay}`} 
+              selectedDay={selectedDay} 
+              csvText={csvDataByDay[selectedDay] || ''}
+              onChangeCsv={handleCsvChange}
+            />
 
             {/* Right: Preview */}
             <AdminEditorTable key={`table-${selectedDay}`} currentDaySchedule={currentDaySchedule} selectedDay={selectedDay} />

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ScheduleItem } from '../types';
+import { ScheduleItem, FULL_WEEK } from '../types';
 import { differenceInMinutes, parse } from 'date-fns';
 import { Clock } from '@/components/shared/Clock';
 
@@ -19,49 +19,30 @@ export function ScheduleTable({ schedule }: ScheduleTableProps) {
     return () => clearInterval(timer);
   }, []);
 
-  // Get current day name in Spanish to filter
-  const daysMap = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
-  const currentDayName = daysMap[currentTime.getDay()];
+  const currentDayName = FULL_WEEK[currentTime.getDay()];
 
   const normalizeString = (str: string) => 
     str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
-  // Filter schedule for today and sort by time
+  // Filter schedule for today, map diffMins once, and sort by time
   const todaySchedule = schedule
     .filter(item => normalizeString(item.dia) === normalizeString(currentDayName))
-    .filter(item => {
+    .map(item => {
       try {
         const classTime = parse(item.hora, 'HH:mm', new Date());
-        const diffMins = differenceInMinutes(classTime, currentTime);
-        // Show classes from 20 mins before they start, up to 120 mins after they start
-        // Wait, if class is at 10:00 and now is 10:20, diffMins is -20.
-        // If class is at 12:00 and now is 10:00, diffMins is +120.
-        return diffMins >= -20 && diffMins <= 120;
+        return { ...item, diffMins: differenceInMinutes(classTime, currentTime) };
       } catch (e) {
-        return false;
+        return { ...item, diffMins: 9999 };
       }
     })
+    .filter(item => item.diffMins >= -20 && item.diffMins <= 120)
     .sort((a, b) => a.hora.localeCompare(b.hora));
 
-  const getStatusColor = (timeStr: string) => {
-    try {
-      const classTime = parse(timeStr, 'HH:mm', new Date());
-      // diffMins = classTime - currentTime
-      // If class is at 10:00 and now is 09:55, diff is +5
-      // If class is at 10:00 and now is 10:05, diff is -5
-      const diffMins = differenceInMinutes(classTime, currentTime);
-
-      if (diffMins > 0 && diffMins <= 7) {
-        return 'bg-green-100/90 hover:bg-green-200 border-l-[5px] border-green-600'; // Green: Ingreso habilitado (-7 min)
-      } else if (diffMins <= 0 && diffMins >= -7) {
-        return 'bg-amber-100/70 hover:bg-amber-100 border-l-[4px] border-amber-500'; // Orange: Iniciando ahora (0-7 min)
-      } else if (diffMins < -7) {
-        return 'bg-red-100/70 hover:bg-red-100 border-l-[4px] border-red-500'; // Red: En curso o finalizada
-      }
-      return 'bg-white hover:bg-gray-50 border-l-4 border-transparent'; // Future
-    } catch (e) {
-      return 'bg-white border-l-4 border-transparent';
-    }
+  const getStatusColor = (diffMins: number) => {
+    if (diffMins > 0 && diffMins <= 7) return 'bg-green-100/90 hover:bg-green-200 border-l-[5px] border-green-600';
+    if (diffMins <= 0 && diffMins >= -7) return 'bg-amber-100/70 hover:bg-amber-100 border-l-[4px] border-amber-500';
+    if (diffMins < -7) return 'bg-red-100/70 hover:bg-red-100 border-l-[4px] border-red-500';
+    return 'bg-white hover:bg-gray-50 border-l-4 border-transparent';
   };
 
   // Adaptive Density Logic
@@ -129,7 +110,7 @@ export function ScheduleTable({ schedule }: ScheduleTableProps) {
               {todaySchedule.map((item) => (
                 <div 
                   key={item.id} 
-                  className={`grid grid-cols-[120px_1.5fr_1.5fr_1.5fr_100px_1.5fr] items-center transition-colors text-gray-800 ${density.gap} ${density.rowPad} ${density.rowText} ${getStatusColor(item.hora)}`}
+                  className={`grid grid-cols-[120px_1.5fr_1.5fr_1.5fr_100px_1.5fr] items-center transition-colors text-gray-800 ${density.gap} ${density.rowPad} ${density.rowText} ${getStatusColor(item.diffMins)}`}
                 >
                   <div className="font-semibold capitalize text-[#1e233a]">{item.dia}</div>
                   <div>{item.materia}</div>
