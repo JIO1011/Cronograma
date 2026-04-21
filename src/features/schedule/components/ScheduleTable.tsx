@@ -35,7 +35,7 @@ export function ScheduleTable({ schedule }: ScheduleTableProps) {
         return { ...item, diffMins: 9999 };
       }
     })
-    .filter(item => item.diffMins >= -20 && item.diffMins <= 120)
+    .filter(item => item.diffMins >= -30 && item.diffMins <= 120)
     .sort((a, b) => a.hora.localeCompare(b.hora));
 
   const getStatusColor = (diffMins: number) => {
@@ -50,35 +50,35 @@ export function ScheduleTable({ schedule }: ScheduleTableProps) {
   const getAdaptiveClasses = () => {
     if (rowCount >= 9) {
       return {
-        headerPad: 'p-1.5 pl-2 md:pl-4',
-        headerText: 'text-[clamp(9px,1.2vh,11px)]',
-        rowPad: 'py-1 px-2 md:pl-3',
-        rowText: 'text-[clamp(10px,1.5vh,12px)]',
+        headerPad: 'p-1 pl-2 md:pl-4',
+        headerText: 'text-[clamp(10px,1.2vh,12px)]',
+        rowPad: 'py-0.5 px-2 md:pl-3',
+        rowText: 'text-[clamp(11px,1.6vh,13px)]',
         gap: 'gap-1',
       };
-    } else if (rowCount === 8) {
+    } else if (rowCount >= 6) {
       return {
-        headerPad: 'p-2 pl-3 md:pl-5',
-        headerText: 'text-[clamp(10px,1.5vh,12px)]',
-        rowPad: 'py-1.5 px-3 md:pl-4',
+        headerPad: 'p-1 pl-3 md:pl-5',
+        headerText: 'text-[clamp(10px,1.4vh,12px)]',
+        rowPad: 'py-0.5 px-3 md:pl-4',
         rowText: 'text-[clamp(11px,1.8vh,13px)]',
-        gap: 'gap-1 md:gap-2',
+        gap: 'gap-1',
       };
-    } else if (rowCount === 7) {
+    } else if (rowCount >= 4) {
       return {
-        headerPad: 'p-2 md:p-3 pl-4 md:pl-6',
-        headerText: 'text-[clamp(11px,1.8vh,13px)]',
+        headerPad: 'p-2 pl-4 md:pl-6',
+        headerText: 'text-[clamp(12px,2vh,15px)]',
         rowPad: 'py-2 px-4 md:pl-5',
-        rowText: 'text-[clamp(12px,2vh,14px)]',
-        gap: 'gap-2 md:gap-3',
+        rowText: 'text-[clamp(14px,2.5vh,17px)]',
+        gap: 'gap-2',
       };
     } else {
       return {
-        headerPad: 'p-3 md:p-4 pl-4 md:pl-8',
-        headerText: 'text-[clamp(12px,2vh,14px)]',
-        rowPad: 'py-2 md:py-3 px-4 md:pl-6',
-        rowText: 'text-[clamp(13px,2.5vh,15px)]',
-        gap: 'gap-2 md:gap-4',
+        headerPad: 'p-3 pl-4 md:pl-8',
+        headerText: 'text-[clamp(14px,2.2vh,16px)]',
+        rowPad: 'py-3 px-4 md:pl-6',
+        rowText: 'text-[clamp(16px,3vh,18px)]',
+        gap: 'gap-3',
       };
     }
   };
@@ -86,7 +86,7 @@ export function ScheduleTable({ schedule }: ScheduleTableProps) {
   const density = getAdaptiveClasses();
 
   return (
-    <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8 flex-1 flex flex-col justify-start mt-2 mb-auto overflow-hidden pb-4">
+    <div className="w-full max-w-[1400px] mx-auto px-[2vw] md:px-8 flex-1 flex flex-col justify-start mt-[1vh] mb-auto overflow-hidden pb-[1vh]">
       <Clock rowCount={rowCount} />
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col min-h-0 w-full overflow-x-auto">
         {/* Table Header */}
@@ -126,7 +126,7 @@ export function ScheduleTable({ schedule }: ScheduleTableProps) {
       </div>
 
       {/* Legend */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 mt-2 p-2 flex flex-wrap items-center justify-center gap-4 md:gap-8 shrink-0">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 mt-[1vh] p-[1vh] flex flex-wrap items-center justify-center gap-4 md:gap-8 shrink-0 [@media(max-height:400px)]:hidden">
         <div className="flex items-center gap-2 text-[clamp(10px,1.5vh,12px)] text-gray-600 font-medium">
           <div className="w-3 h-3 rounded-full bg-green-600" />
           <span>Ingreso habilitado (-7 min)</span>
